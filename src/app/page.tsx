@@ -31,12 +31,12 @@ export default function Home() {
   return (
     <main ref={containerRef} className="relative bg-black min-h-screen text-white overflow-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-black/20 border-b border-white/5">
+      <nav className="fixed top-0 left-0 w-full z-50 p-4 md:p-6 flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 md:gap-0 backdrop-blur-md bg-black/20 border-b border-white/5">
         <div className="flex items-center gap-3">
           <img src="/nfavi.jpg" alt="Nexoryn Logo" className="w-8 h-8 rounded object-cover shadow-[0_0_15px_rgba(99,102,241,0.5)]" />
           <span className="text-xl font-bold tracking-widest uppercase">Nexoryn Media</span>
         </div>
-        <Link href="/contact" className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/10 text-sm tracking-wide">
+        <Link href="/contact" className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/10 text-sm tracking-wide whitespace-nowrap">
           Get Started
         </Link>
       </nav>
