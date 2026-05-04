@@ -229,8 +229,8 @@ export default function Home() {
             { name: "Eightcap", logo: "/partners/eightcap.png", scale: 1 },
             { name: "FP Markets", logo: "/partners/fpmarkets.webp", scale: 1.1 }
           ].map((partner, i) => (
-            <div key={`dup-${i}`} className="flex items-center mx-6 md:mx-12 gap-6 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default group">
-              <div className="w-11 h-11 rounded-xl border border-white/10 overflow-hidden flex items-center justify-center bg-white/5 transition-colors">
+            <div key={`dup-${i}`} className="flex items-center mx-6 md:mx-12 gap-3 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-default group">
+              <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-white/5 transition-colors">
                 <img
                   src={partner.logo}
                   alt={partner.name}
