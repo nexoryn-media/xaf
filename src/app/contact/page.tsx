@@ -30,6 +30,7 @@ export default function Contact() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validateField = (name: string, value: string) => {
     let error = "";
@@ -75,9 +76,29 @@ export default function Contact() {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await response.json().catch(() => null)) as { message?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(data?.message || "We could not send your application. Please try again.");
+      }
+
+      setIsSuccess(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "We could not send your application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -134,7 +155,7 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    Let's Build the <span className="text-gradient">Apex.</span>
+                    Let&apos;s Build the <span className="text-gradient">Apex.</span>
                   </motion.h1>
                   <p className="text-gray-400 text-lg">
                     Submit your application to join our elite performance network.
@@ -235,6 +256,17 @@ export default function Contact() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-200 to-purple-200 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </button>
+
+                  {submitError && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-sm text-red-300 text-center"
+                      role="alert"
+                    >
+                      {submitError}
+                    </motion.p>
+                  )}
                 </form>
               </motion.div>
             ) : (

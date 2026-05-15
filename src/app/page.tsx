@@ -9,7 +9,7 @@ export default function Home() {
   const containerRef = useRef(null);
   const ctaRef = useRef(null);
 
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
@@ -23,7 +23,6 @@ export default function Home() {
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "150%"]);
   const opacityText = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const opacityScroll = useTransform(scrollY, [0, 100], [1, 0]);
 
   const ctaScale = useTransform(ctaScroll, [0, 0.5, 1], [0.8, 1.1, 0.8]);
   const ctaOpacity = useTransform(ctaScroll, [0, 0.5, 1], [0, 0.4, 0]);
@@ -85,7 +84,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-lg md:text-2xl text-gray-400 max-w-2xl font-light mb-10"
           >
-            We don't just participate in the market. We dominate it. Nexoryn Media delivers exclusive conversions and relentless scale.
+            We don&apos;t just participate in the market. We dominate it. Nexoryn Media delivers exclusive conversions and relentless scale.
           </motion.p>
 
           <motion.div
@@ -280,7 +279,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">The Unbeatable Standard</h2>
-            <p className="text-gray-500 text-lg max-w-xl mx-auto">Don't take our word for it. Our partners speak for themselves.</p>
+            <p className="text-gray-500 text-lg max-w-xl mx-auto">Don&apos;t take our word for it. Our partners speak for themselves.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -309,7 +308,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <p className="text-lg text-gray-300 italic mb-8">"{t.quote}"</p>
+                <p className="text-lg text-gray-300 italic mb-8">&quot;{t.quote}&quot;</p>
                 <div>
                   <div className="font-bold text-white">{t.author}</div>
                   <div className="text-sm text-indigo-400">{t.role}</div>
